@@ -1,9 +1,8 @@
-from test_heroku.models.database import sql_select
+from test_heroku.models.database_queries import create_user, new_post
 from test_heroku.models.verify_user import user_id, validate_password
 from flask import Flask, request, render_template, redirect, session
 import psycopg2
 import bcrypt
-from models import verify_user, database, database_queries
 
 app = Flask(__name__)
 
@@ -40,8 +39,9 @@ def signup_action():
     email = request.form.get("email")
     first_name = request.form.get("first_name")
     last_name = request.form.get("last_name")
+    username = request.form.get("username")
     password = request.form.get("password")
-    create_user(email, first_name, last_name, password)
+    create_user(email, first_name, last_name, username, password)
     return redirect("/")
 
 if __name__ == "__main__":
