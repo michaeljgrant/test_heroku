@@ -1,2 +1,23 @@
-# test_heroku
-First deployment to Heroku
+# GA Second Project
+### Second Project for General Assembly SEI-ANZ-SEIFXR05
+Build a full-stack database-backed application.
+Requirements:
+Your app must:
+* Have at least 2 tables (more if they make sense) – one of them should represent the people using your application (users).
+* Include sign up/log in functionality (if it makes sense), with encrypted passwords & an authorization flow
+* Modify data in the database There should be ways for users to add/change some data in the database (it's ok if only admins can make changes).
+* Have semantically clean HTML and CSS
+* Be deployed online and accessible to the public
+
+## Project Outline
+### Message board for bread enthusiasts.
+
+Create a messageboard where people can post about bread; such as bakeries, recipes and tips and tricks for creating the perfect bread.
+
+This idea is a parody of reddit called breaddit - and will have common messageboard functionality - post, delete, like, dislike and comment.
+
+The website will require users to create an account and login to access the functionality. 
+
+## Templates
+
+![homepage template](static/homepage.png)
