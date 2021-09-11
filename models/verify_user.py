@@ -10,7 +10,7 @@ def validate_password(email, password):
     if user_found == []:
         return False
     else:
-        password_hash = user_found[0][3]
+        password_hash = user_found[0][4]
         return bcrypt.checkpw(password.encode(), password_hash.encode())
 
 def user_id(email):

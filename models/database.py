@@ -18,3 +18,5 @@ def sql_write(query, params):
   cur.execute(query, params)
   conn.commit()
   conn.close()
+
+

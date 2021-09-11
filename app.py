@@ -26,7 +26,6 @@ def login_action():
        redirect("/login")
 
 
-
 @app.route('/logout')
 def logout():
     session.clear()
@@ -39,14 +38,10 @@ def signup():
 @app.route("/signup_action", methods=["POST"])
 def signup_action():
     email = request.form.get("email")
-    name = request.form.get("name")
+    first_name = request.form.get("first_name")
+    last_name = request.form.get("last_name")
     password = request.form.get("password")
-    password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
-    conn = psycopg2.connect("DB_URL")
-    cur = conn.cursor()
-    cur.execute("INSERT INTO users (email, name, password_hash) VALUES (%s, %s, %s)", [email, name, password_hash])
-    conn.commit()
-    conn.close()
+    create_user(email, first_name, last_name, password)
     return redirect("/")
 
 if __name__ == "__main__":
