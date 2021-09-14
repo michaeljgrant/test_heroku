@@ -16,12 +16,12 @@ def new_post(user_id, post_content, post_title):
     return
 
 def get_posts():
-    sql_select("SELECT * FROM posts ORDER BY ASC")
-    return
+    results = sql_select("SELECT * FROM posts ORDER BY ASC")
+    return results
 
 def post_editor(post_id):
-    sql_select("SELECT * FROM posts WHERE id = %s", [post_id])
-    return
+    results = sql_select("SELECT * FROM posts WHERE id = %s", [post_id])
+    return results
 
 def update_post(post_id, title, content):
     sql_write("UPDATE posts SET post_title = %s, post_content = %s WHERE id = %s", [title, content, post_id])
