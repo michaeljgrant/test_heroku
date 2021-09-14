@@ -2,8 +2,8 @@
 
 {% block content %}
     <form method="POST">
-        <label for="post_title">Title:</label><input type="text" name="name"><br>
-        <label for="post_content">Content:</label><input type="text" name="price"><br>
+        <label for="post_title">Title:</label><input type="text" name="post_title"><br>
+        <label for="post_content">Content:</label><textarea rows="5" columns="40" name="post_content"></textarea><br>
         <input class="button" type="submit" action="/additem" value="Add"> 
     </form>
 {% endblock %}

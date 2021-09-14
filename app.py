@@ -1,13 +1,13 @@
-from models.database_queries import create_user, get_posts, new_post, update_post, post_editor
+from models.database_queries import create_user, get_posts, new_post, update_post, post_editor, delete_post
 from models.verify_user import user_id, validate_password
 from flask import Flask, request, render_template, redirect, session
-
 import psycopg2
 import bcrypt
 import os
 SECRET_KEY = os.environ.get("SECRET_KEY", "Totally Secure Fallback Secret Key")
 DB_URL = os.environ.get("DATABASE_URL", "dbname=projectheroku")
 app = Flask(__name__)
+
 app.config['SECRET_KEY'] = SECRET_KEY
 @app.route("/")
 def index():
@@ -15,22 +15,23 @@ def index():
     user_name = session.get('user_name')
     results = get_posts()
     print(results)
-    render_template("index.html", user_id=user_id, user_name=user_name, results = results)
+    return render_template("index.html", user_id=user_id, user_name=user_name, results = results)
 
 @app.route("/login", methods=["GET"])
 def login_landing():
-    render_template("login.html")
+    return render_template("login.html")
 
 @app.route("/login", methods=["POST"])
 def login_action():
     email = request.form.get("email")
     password = request.form.get("password")
     if validate_password(email, password):
-        session['user_id'] = user_id(email)[0][0]
-        session['user_name'] = user_id(email)[0][3]
-        redirect("/")
+        user = user_id(email)
+        session['user_id'] = user[0][0]
+        session['user_name'] = user[0][3]
+        return redirect("/")
     else:
-       redirect("/login")
+       return redirect("/login")
 
 
 @app.route('/logout')
@@ -58,7 +59,7 @@ def create_screen():
 
 @app.route("/addpost", methods=['POST'])
 def create_a_post():
-    user_id = request.form.get("user_id")
+    user_id = session.get("user_id")
     post_content = request.form.get("post_content")
     post_title = request.form.get("post_title")
     new_post(user_id, post_content, post_title)
@@ -76,6 +77,12 @@ def edit_post_entry():
     title = request.form.get("title")
     content = request.form.get("content")
     update_post(post_id, title, content)
+    return redirect("/")
+
+@app.route("/delete", methods=["POST"])
+def delete_food():
+    id_to_delete = request.form.get("id")
+    delete_post(id_to_delete)
     return redirect("/")
 
 if __name__ == "__main__":

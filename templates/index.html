@@ -4,22 +4,21 @@
 <p class="login_box">You are logged in as: {{user_name}}
 <a class="button" href="/logout">Logout</a></p>
 {% else %}
-<p><a class="button" href="/login">Login</a></p>
+<p><a class="button" href="/login">Login</a></p><p><a class="button" href="/signup">Sign Up</a></p>
 {% endif %}
 {% endblock %}
 {% block content %}
-
+{% if user_id %}
+<a class="button" href="/addpost">New Post</a>
+{% endif %}
 <ul>
-{% for posts of results %}
+{% for posts in results %}
 
 <li>
-    {{posts[2]}}<br>{{posts[3]}}<br>
-    <!-- {% if img%}<img class="POST IMAGE" src="{{POST IMAGE}}">{% endif %}<br> -->
-    {% if user_id == posts[1] %}<a class="edit_link" href="/edit_post?id={{posts[0]}}"> Edit </a><br>{% endif %}
+    <h3>{{posts[3]}}</h3><br><p>{{posts[2]}}</p><br>
+    
+    {% if user_id == posts[1] %}<a class="edit_link" href="/edit_post?id={{posts[0]}}"> Edit </a><br>{% endif %}<p class="username">Created by: {{posts[4]}}</p>
 </li>
 {% endfor %}
 </ul>
-{% if user_id %}
-<a class="button" href="/addpost"></a>
-{% endif %}
 {% endblock %}

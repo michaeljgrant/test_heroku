@@ -16,6 +16,15 @@ CREATE TABLE posts (
     REFERENCES users(id)
 );
 
+CREATE TABLE comments (
+    id SERIAL PRIMARY KEY,
+    post_id INTEGER,
+    commenter_id INTEGER,
+    comment_content TEXT,
+    FOREIGN KEY (post_id)
+    REFERENCES posts(id)
+)
+
 CREATE TABLE likes (
     post_id INTEGER,
     user_id INTEGER,

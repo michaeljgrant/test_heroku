@@ -10,9 +10,9 @@ def validate_password(email, password):
     if user_found == []:
         return False
     else:
-        password_hash = user_found[0][4]
+        password_hash = user_found[0][5]
         return bcrypt.checkpw(password.encode(), password_hash.encode())
 
 def user_id(email):
-    results = sql_select("SELECT id FROM users WHERE email = %s", email)
+    results = sql_select("SELECT * FROM users WHERE email = %s", [email])
     return results

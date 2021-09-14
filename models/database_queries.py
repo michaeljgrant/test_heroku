@@ -1,7 +1,6 @@
 import os
 import bcrypt
 from models.database import sql_select, sql_write
-from models import database
 import psycopg2
 
 DB_URL = os.environ.get("DATABASE_URL", "dbname=projectheroku")
@@ -12,11 +11,11 @@ def create_user(email, first_name, last_name, username, password):
     return
 
 def new_post(user_id, post_content, post_title):
-    sql_write("INSERT INTO posts (poster_id, post_content, post_title) VALUES (%s, %s)", [user_id, post_content, post_title])
+    sql_write("INSERT INTO posts (poster_id, post_content, post_title) VALUES (%s, %s, %s)", [user_id, post_content, post_title])
     return
 
 def get_posts():
-    results = sql_select("SELECT * FROM posts ORDER BY ASC")
+    results = sql_select("SELECT * FROM posts", [])
     return results
 
 def post_editor(post_id):
@@ -25,4 +24,8 @@ def post_editor(post_id):
 
 def update_post(post_id, title, content):
     sql_write("UPDATE posts SET post_title = %s, post_content = %s WHERE id = %s", [title, content, post_id])
+    return 
+
+def delete_post(id_to_delete):
+    sql_write("DELETE FROM posts WHERE id = (%s)", [id_to_delete])
     return
