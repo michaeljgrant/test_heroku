@@ -4,6 +4,10 @@ from flask import Flask, request, render_template, redirect, session
 import psycopg2
 import bcrypt
 import os
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 SECRET_KEY = os.environ.get("SECRET_KEY", "Totally Secure Fallback Secret Key")
 DB_URL = os.environ.get("DATABASE_URL", "dbname=projectheroku")
 app = Flask(__name__)
