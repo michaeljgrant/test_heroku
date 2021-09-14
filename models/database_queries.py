@@ -1,4 +1,5 @@
 import os
+from test_heroku.models.verify_user import user_id
 import bcrypt
 from test_heroku.models.database import sql_select, sql_write
 from models import database
@@ -11,5 +12,10 @@ def create_user(email, first_name, last_name, username, password):
     sql_write("INSERT INTO users (email, first_name, last_name, username, password_hash) VALUES (%s, %s, %s, %s, %s)", [email, first_name, last_name, username, password_hash])
     return
 
-def new_post():
+def new_post(user_id, post_content):
+    sql_write("INSERT INTO posts (poster_id, post_content) VALUES (%s, %s"), [user_id, post_content]
+    return
+
+def get_posts():
+    sql_select("SELECT * FROM posts ORDER BY ASC")
     return

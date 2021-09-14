@@ -5,18 +5,22 @@ CREATE TABLE users (
     username TEXT,
     email TEXT,
     password_hash TEXT
-)
+);
 
 CREATE TABLE posts (
     id SERIAL PRIMARY KEY,
-    comment_poster INTEGER,
+    poster_id INTEGER,
     post_content TEXT,
-)
+    FOREIGN KEY(poster_id)
+    REFERENCES users(id)
+);
 
 CREATE TABLE likes (
     post_id INTEGER,
-    username_id INTEGER,
+    user_id INTEGER,
     post_like BOOLEAN,
+    FOREIGN KEY(user_id)
+    REFERENCES users(id)
+);
 
-)
 

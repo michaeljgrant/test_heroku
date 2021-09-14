@@ -8,7 +8,10 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    render_template("index.html")
+    user_id = session.get('user_id')
+    user_name = session.get('user_name')
+    results = 
+    render_template("index.html", user_id=user_id, user_name=user_name, )
 
 @app.route("/login", methods=["GET"])
 def login_landing():
@@ -20,6 +23,7 @@ def login_action():
     password = request.form.get("password")
     if validate_password(email, password):
         session['user_id'] = user_id(email)[0][0]
+        session['user_name'] = user_id(email)[0][3]
         redirect("/")
     else:
        redirect("/login")
@@ -40,8 +44,19 @@ def signup_action():
     first_name = request.form.get("first_name")
     last_name = request.form.get("last_name")
     username = request.form.get("username")
-    password = request.form.get("password")
+    password = request.form.get("password1")
     create_user(email, first_name, last_name, username, password)
+    return redirect("/")
+    
+@app.route("/addpost", methods=['GET'])
+def create_screen():
+    return render_template("addpost.html")
+
+@app.route("/addpost", methods=['POST'])
+def create_a_post():
+    user_id = request.form.get("user_id")
+    post_content = request.form.get("post_content")
+    new_post(user_id, post_content)
     return redirect("/")
 
 if __name__ == "__main__":
