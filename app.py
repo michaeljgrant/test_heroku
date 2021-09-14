@@ -1,17 +1,20 @@
-from test_heroku.models.database_queries import create_user, new_post
+from test_heroku.models.database_queries import create_user, get_posts, new_post
 from test_heroku.models.verify_user import user_id, validate_password
 from flask import Flask, request, render_template, redirect, session
 import psycopg2
 import bcrypt
+import os
+SECRET_KEY = os.environ.get("SECRET_KEY", "Totally Secure Fallback Secret Key")
 
 app = Flask(__name__)
-
+app.config['SECRET_KEY'] = SECRET_KEY
 @app.route("/")
 def index():
     user_id = session.get('user_id')
     user_name = session.get('user_name')
-    results = 
-    render_template("index.html", user_id=user_id, user_name=user_name, )
+    results = get_posts()
+    print(results)
+    render_template("index.html", user_id=user_id, user_name=user_name, results = results)
 
 @app.route("/login", methods=["GET"])
 def login_landing():
@@ -47,7 +50,7 @@ def signup_action():
     password = request.form.get("password1")
     create_user(email, first_name, last_name, username, password)
     return redirect("/")
-    
+
 @app.route("/addpost", methods=['GET'])
 def create_screen():
     return render_template("addpost.html")
@@ -56,7 +59,8 @@ def create_screen():
 def create_a_post():
     user_id = request.form.get("user_id")
     post_content = request.form.get("post_content")
-    new_post(user_id, post_content)
+    post_title = request.form.get("post_title")
+    new_post(user_id, post_content, post_title)
     return redirect("/")
 
 if __name__ == "__main__":

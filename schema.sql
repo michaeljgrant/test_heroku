@@ -11,6 +11,7 @@ CREATE TABLE posts (
     id SERIAL PRIMARY KEY,
     poster_id INTEGER,
     post_content TEXT,
+    post_title,
     FOREIGN KEY(poster_id)
     REFERENCES users(id)
 );

@@ -12,8 +12,8 @@ def create_user(email, first_name, last_name, username, password):
     sql_write("INSERT INTO users (email, first_name, last_name, username, password_hash) VALUES (%s, %s, %s, %s, %s)", [email, first_name, last_name, username, password_hash])
     return
 
-def new_post(user_id, post_content):
-    sql_write("INSERT INTO posts (poster_id, post_content) VALUES (%s, %s"), [user_id, post_content]
+def new_post(user_id, post_content, post_title):
+    sql_write("INSERT INTO posts (poster_id, post_content, post_title) VALUES (%s, %s)", [user_id, post_content, post_title])
     return
 
 def get_posts():

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form method="POST">
+        <label for="post_title">Name:</label><input type="text" name="name"><br>
+        <label for="post_content">Price:</label><input type="text" name="price"><br>
+        <input class="button" type="submit" action="/additem" value="Add"> 
+    </form>
+{% endblock %}

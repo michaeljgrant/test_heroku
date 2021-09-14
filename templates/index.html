@@ -10,17 +10,16 @@
 {% block content %}
 
 <ul>
-{% for posts %}
+{% for posts of results %}
 
 <li>
-
-    {{ POSTTITLE[1] }}<br>{{ POST SUBTITLE )}}<br>
-    {% if POST IMAGE EXISTS %}<img class="POST IMAGE" src="{{POST IMAGE}}">{% endif %}<br>
-    {% if user_id == POST_ID %}<a class ="edit_link" href="/edit_post?id={{POST_ID}}"> Edit </a><br>{% endif %}
+    {{posts[2]}}<br>{{posts[3]}}<br>
+    <!-- {% if img%}<img class="POST IMAGE" src="{{POST IMAGE}}">{% endif %}<br> -->
+    {% if user_id == poster_id %}<a class ="edit_link" href="/edit_post?id={{POST_ID}}"> Edit </a><br>{% endif %}
 </li>
 {% endfor %}
 </ul>
 {% if user_id %}
-<a class="button" href="/post_content"></a>
+<a class="button" href="/addpost"></a>
 {% endif %}
 {% endblock %}
