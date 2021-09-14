@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>Editing Post:<br>{{results[3]}}</h3>
+
+
+{% for items in previous_name %}
+<p>POST ID: {{results[0]}}</p>
+<form action="/delete" method="POST">
+<input type="hidden" name="id" value="{{results[0]}}">
+<br>
+<input class="button"  type="submit" value="Delete Post">
+</form>
+<form action="/edit_post" method="POST">
+<input type="hidden" name="id" value="{{results[0]}}">
+<label for="id">Title:</label>
+<input name="title" type="text" value="{{results[3]}}"></br> 
+<label for="content">Post Content:</label>
+<input type="text" name="price" value="{{results[2]}}">
+<br>
+<input class="button" type="submit" value="Edit Post">
+</form>
+
+{% endfor %}
+
+
+
+{% endblock %}

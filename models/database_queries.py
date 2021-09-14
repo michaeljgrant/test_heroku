@@ -1,7 +1,6 @@
 import os
-from test_heroku.models.verify_user import user_id
 import bcrypt
-from test_heroku.models.database import sql_select, sql_write
+from models.database import sql_select, sql_write
 from models import database
 import psycopg2
 
@@ -18,4 +17,12 @@ def new_post(user_id, post_content, post_title):
 
 def get_posts():
     sql_select("SELECT * FROM posts ORDER BY ASC")
+    return
+
+def post_editor(post_id):
+    sql_select("SELECT * FROM posts WHERE id = %s", [post_id])
+    return
+
+def update_post(post_id, title, content):
+    sql_write("UPDATE posts SET post_title = %s, post_content = %s WHERE id = %s", [title, content, post_id])
     return

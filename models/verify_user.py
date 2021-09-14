@@ -1,4 +1,4 @@
-from test_heroku.models.database import sql_select
+from models.database import sql_select
 import bcrypt
 import os
 import psycopg2
