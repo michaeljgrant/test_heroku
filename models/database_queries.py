@@ -10,8 +10,8 @@ def create_user(email, first_name, last_name, username, password):
     sql_write("INSERT INTO users (email, first_name, last_name, username, password_hash) VALUES (%s, %s, %s, %s, %s)", [email, first_name, last_name, username, password_hash])
     return
 
-def new_post(user_id, post_content, post_title):
-    sql_write("INSERT INTO posts (poster_id, post_content, post_title) VALUES (%s, %s, %s)", [user_id, post_content, post_title])
+def new_post(user_id, post_content, post_title, username):
+    sql_write("INSERT INTO posts (poster_id, post_content, post_title, username) VALUES (%s, %s, %s, %s)", [user_id, post_content, post_title, username])
     return
 
 def get_posts():
@@ -29,3 +29,7 @@ def update_post(post_id, title, content):
 def delete_post(id_to_delete):
     sql_write("DELETE FROM posts WHERE id = (%s)", [id_to_delete])
     return
+
+def getusername(user_id):
+    results = sql_select("SELECT username FROM users WHERE id = %s", [user_id])
+    return results

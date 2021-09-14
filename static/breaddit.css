@@ -16,7 +16,7 @@ main {
     display: grid;
     grid-template-areas: 
     "header"
-    "menu"
+    "posts"
     "footer";
     row-gap: 25px;
     margin: auto 0;
@@ -67,7 +67,7 @@ h3 {
     margin: 3px;
 }
 section {
-    grid-area: "menu";
+    grid-area: "posts";
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -125,7 +125,7 @@ li {
     font-size: 18px;
     font-weight: bold;
     flex: 1;
-    flex-basis: 30%;
+    flex-basis: 100%;
     background:rgba(59, 57, 57, 0.377);
     border-radius: 10px;
     padding: 10px;

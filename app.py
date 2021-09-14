@@ -1,4 +1,4 @@
-from models.database_queries import create_user, get_posts, new_post, update_post, post_editor, delete_post
+from models.database_queries import create_user, get_posts, new_post, update_post, post_editor, delete_post, getusername
 from models.verify_user import user_id, validate_password
 from flask import Flask, request, render_template, redirect, session
 import psycopg2
@@ -60,9 +60,11 @@ def create_screen():
 @app.route("/addpost", methods=['POST'])
 def create_a_post():
     user_id = session.get("user_id")
+    username = getusername(user_id)[0][0]
+    print(username)
     post_content = request.form.get("post_content")
     post_title = request.form.get("post_title")
-    new_post(user_id, post_content, post_title)
+    new_post(user_id, post_content, post_title, username)
     return redirect("/")
 
 @app.route("/edit_post", methods=["GET"])
