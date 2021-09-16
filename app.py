@@ -7,7 +7,12 @@ import os
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
-
+cloudinary.config( 
+  cloud_name = "hdf11ffw9", 
+  api_key = "356249549123222", 
+  api_secret = "tHZd8gVKsEchCPfNADFWvKQd_YA" 
+)
+CLOUDINARY_URL=os.environ.get("CLOUDINARY_URL", "cloudinary://tHZd8gVKsEchCPfNADFWvKQd_YA:@hdf11ffw9")
 SECRET_KEY = os.environ.get("SECRET_KEY", "Totally Secure Fallback Secret Key")
 DB_URL = os.environ.get("DATABASE_URL", "dbname=projectheroku")
 app = Flask(__name__)
@@ -18,7 +23,6 @@ def index():
     user_id = session.get('user_id')
     user_name = session.get('user_name')
     results = get_posts()
-    print(results)
     return render_template("index.html", user_id=user_id, user_name=user_name, results = results)
 
 @app.route("/login", methods=["GET"])
@@ -65,10 +69,12 @@ def create_screen():
 def create_a_post():
     user_id = session.get("user_id")
     username = getusername(user_id)[0][0]
-    print(username)
     post_content = request.form.get("post_content")
     post_title = request.form.get("post_title")
-    new_post(user_id, post_content, post_title, username)
+    post_image = request.files['post_image']
+    response = cloudinary.uploader.upload(post_image)
+    uploading_img = response['url']
+    new_post(user_id, post_content, post_title, username, uploading_img)
     return redirect("/")
 
 @app.route("/edit_post", methods=["GET"])
@@ -82,7 +88,9 @@ def edit_post_entry():
     post_id = request.form.get("id")
     title = request.form.get("title")
     content = request.form.get("content")
-    update_post(post_id, title, content)
+    image_url = request.form.get("image_url")
+    upload_image = request.form.get("upload_image")
+    update_post(post_id, title, content, image_url)
     return redirect("/")
 
 @app.route("/delete", methods=["POST"])

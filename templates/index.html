@@ -15,7 +15,11 @@
 {% for posts in results %}
 
 <li>
-    <h3>{{posts[3]}}</h3><br><p>{{posts[2]}}</p><br>
+    <h3>{{posts[3]}}</h3><br>
+    {% if posts[5] != None %}
+    <img class="post-image" src="{{posts[5]}}">
+    {% endif %}
+    <p>{{posts[2]}}</p><br>
     
     {% if user_id == posts[1] %}<a class="edit_link" href="/edit_post?id={{posts[0]}}"> Edit </a><br>{% endif %}
     <p class="username">Created by: {{posts[4]}}</p>

@@ -10,8 +10,8 @@ def create_user(email, first_name, last_name, username, password):
     sql_write("INSERT INTO users (email, first_name, last_name, username, password_hash) VALUES (%s, %s, %s, %s, %s)", [email, first_name, last_name, username, password_hash])
     return
 
-def new_post(user_id, post_content, post_title, username):
-    sql_write("INSERT INTO posts (poster_id, post_content, post_title, username) VALUES (%s, %s, %s, %s)", [user_id, post_content, post_title, username])
+def new_post(user_id, post_content, post_title, username, uploading_image):
+    sql_write("INSERT INTO posts (poster_id, post_content, post_title, username, imageurl) VALUES (%s, %s, %s, %s, %s)", [user_id, post_content, post_title, username, uploading_image])
     return
 
 def get_posts():

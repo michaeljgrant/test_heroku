@@ -25,6 +25,8 @@ main {
     max-width: 800px;
 }
 label{
+    flex: 1 0 50%;
+    text-align: right;
     color: rgba(248, 246, 246, 0.788);
 }
 header {
@@ -37,6 +39,10 @@ header {
     justify-content: center;
     align-items: center;
     border-radius: 10px;
+}
+.post-image {
+    width: 300px;
+    height: 200px;
 }
 h1 {
     text-align: center;
@@ -108,6 +114,7 @@ ul {
     background-color: #1051669d;
     border-radius: 6px;
     outline: none;
+    margin-left: 200px;
 }
 .login_box {
     background-color: rgba(59, 57, 57, 0.377);
@@ -132,12 +139,24 @@ li {
 }
 
 form {
-    display: block; 
+    display: block;
     padding: 0;
     margin: 0;
     width: 500px;
 }
-
+.inputs-container {
+    display: flex; 
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding-right: 50px;
+    row-gap: 20px;
+}
+.input-fields {
+    width: 200px;
+}
+/* ================================================================== */
+/* WARNING!!!! MEDIA QUERY SECTION ADJUST SCREEN BEFORE WORKING HERE */
+/* ================================================================ */
 @media screen and (max-width: 600px) {
     main {
     display: grid;
@@ -152,6 +171,8 @@ form {
     max-width: 300px;
 }
 label{
+    flex: 1 0 100%;
+    text-align: left;
     color: rgba(248, 246, 246, 0.788);
 }
 header {
@@ -202,6 +223,7 @@ section {
     background-color: #0431318d;
     border-radius: 10px;
     padding: 12px;
+    width: 300px;
     min-height: 500px;
 }
 footer {
@@ -228,7 +250,7 @@ ul {
     font-weight: 300;
 }
 .button {
-    display: inline-block;
+    display: inline;
     padding: 4px 7px;
     text-align: center;
     text-decoration: none;
@@ -263,6 +285,17 @@ form {
     display: block; 
     padding: 0;
     margin: 0;
-    width: 400px;
+    width: 250px;
+    margin: 0 auto;
+}
+.inputs-container {
+    display: flex; 
+    padding:0;
+    flex-wrap: wrap;
+    flex-direction: row;
+    row-gap: 20px;
+}
+.input-fields {
+    width: 300px;
 }
 }
