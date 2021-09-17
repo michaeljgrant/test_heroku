@@ -1,22 +1,24 @@
 {% extends "base.html" %}
 {% block login %}
+<nav class="login_box">
 {% if user_id %}
-<p class="login_box">You are logged in as: {{user_name}}
-<a class="button" href="/logout">Logout</a></p>
+<p>You are logged in as: {{user_name}}
+<a class="headerbutton" href="/logout">Logout</a>
+<a class="headerbutton" href="/addpost">New Post</a></p>
 {% else %}
-<p><a class="button" href="/login">Login</a><span><a class="button" href="/signup">Sign Up</a></span></p>
+<a class="button" href="/login">Login</a><span><a class="button" href="/signup">Sign Up</a></span>
 {% endif %}
+</nav>
 {% endblock %}
 {% block content %}
-{% if user_id %}
-<a class="button" href="/addpost">New Post</a>
-{% endif %}
+
 <ul>
 {% for posts in results %}
 
 <li>
     <h3>{{posts[3]}}</h3><br>
-    {% if posts[5] != None %}
+    {% if posts[5] == "None" %}
+    {% elif posts[5] != None%}
     <img class="post-image" src="{{posts[5]}}">
     {% endif %}
     <p>{{posts[2]}}</p><br>

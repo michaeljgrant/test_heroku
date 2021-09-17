@@ -1,4 +1,4 @@
-from models.database_queries import create_user, get_posts, new_post, update_post, post_editor, delete_post, getusername
+from models.database_queries import create_user, get_posts, new_post, update_post, post_editor, delete_post, getusername, update_post_with_new_image
 from models.verify_user import user_id, validate_password
 from flask import Flask, request, render_template, redirect, session
 import psycopg2
@@ -89,8 +89,13 @@ def edit_post_entry():
     title = request.form.get("title")
     content = request.form.get("content")
     image_url = request.form.get("image_url")
-    upload_image = request.form.get("upload_image")
-    update_post(post_id, title, content, image_url)
+    post_image = request.files['post_image']
+    if post_image:
+        response = cloudinary.uploader.upload(post_image)
+        uploading_img = response['url']
+        update_post_with_new_image(post_id, title, content, uploading_img)
+    else:
+        update_post(post_id, title, content, image_url)
     return redirect("/")
 
 @app.route("/delete", methods=["POST"])

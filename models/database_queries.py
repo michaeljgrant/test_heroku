@@ -15,15 +15,19 @@ def new_post(user_id, post_content, post_title, username, uploading_image):
     return
 
 def get_posts():
-    results = sql_select("SELECT * FROM posts", [])
+    results = sql_select("SELECT * FROM posts ORDER BY id ASC", [])
     return results
 
 def post_editor(post_id):
     results = sql_select("SELECT * FROM posts WHERE id = %s", [post_id])
     return results
 
-def update_post(post_id, title, content):
-    sql_write("UPDATE posts SET post_title = %s, post_content = %s WHERE id = %s", [title, content, post_id])
+def update_post(post_id, title, content, image_url):
+    sql_write("UPDATE posts SET post_title = %s, post_content = %s, imageurl = %s WHERE id = %s", [title, content, image_url, post_id])
+    return 
+
+def update_post_with_new_image(post_id, title, content, uploading_img):
+    sql_write("UPDATE posts SET post_title = %s, post_content = %s, imageurl = %s WHERE id = %s", [title, content, uploading_img, post_id])
     return 
 
 def delete_post(id_to_delete):

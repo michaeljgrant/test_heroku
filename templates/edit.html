@@ -1,26 +1,32 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h3>Editing Post:<br>{{results[3]}}</h3>
+<h3>Editing Post</h3>
 
 
 {% for results in results %}
-<p>POST ID: {{results[0]}}</p>
 <form action="/delete" method="POST">
-<input type="hidden" name="id" value="{{results[0]}}">
-<br>
-<input class="button"  type="submit" value="Delete Post">
+    <input type="hidden" name="id" value="{{results[0]}}"><br>
+    <input class="button"  type="submit" value="Delete Post">
 </form>
-<form action="/edit_post" method="POST">
-<input type="hidden" name="id" value="{{results[0]}}">
-<label for="id">Title:</label>
-<input name="title" type="text" value="{{results[3]}}"></br> 
-<label for="content">Post Content:</label>
-<label for="previous">Current Image:</label><img name="previous" src="{{results[5]}}">
-<textarea rows="15" columns="1000" name="content" value="{{results[2]}}"></textarea>
-<br>
-<input class="button" type="submit" value="Edit Post">
-</form>
+
+    <form action="/edit_post" method="POST" enctype="multipart/form-data">
+        <div class="inputs-container">
+            <input type="hidden" class="input-fields" name="id" value="{{results[0]}}"><br>
+            <label for="id">Title:</label>
+                <input class="input-fields" name="title" type="text" value="{{results[3]}}"></br> 
+            <label for="previous">Current Image:</label>
+                <img class="input-fields" name="previous" src="{{results[5]}}"><br>
+            <label for="image_url">Current Image URL:</label>
+                <input class="input-fields" name="image_url" type="text" value="{{results[5]}}"><br>
+            <label for="post_image">Upload Image: </label>
+                <input class="input-fields"type="file" id="upload" name="post_image"><br>
+            <label for="content">Post Content:</label>
+                <textarea class="input-fields"  rows="15" columns="100" name="content">{{results[2]}}</textarea><br>
+        </div>
+            <input class="button" type="submit" value="Edit Post">
+        
+    </form>
 
 {% endfor %}
 
