@@ -185,8 +185,7 @@ form {
     margin: auto 0;
     justify-content: center;
     align-items: center;
-    max-width: 300px;
-    margin: 20px;
+    max-width: fit-content;
 }
 label{
     flex: 1 0 100%;
@@ -331,5 +330,11 @@ form {
     top: 0;
     height:fit-content;
     border-radius: 10px;
+    width: 250px;
+    margin: auto;
+}
+.post-image {
+    width: 200px;
+    height: 100px;
 }
 }
