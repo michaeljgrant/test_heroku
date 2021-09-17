@@ -15,7 +15,7 @@ def new_post(user_id, post_content, post_title, username, uploading_image):
     return
 
 def get_posts():
-    results = sql_select("SELECT * FROM posts ORDER BY id ASC", [])
+    results = sql_select("SELECT * FROM posts ORDER BY id DESC", [])
     return results
 
 def post_editor(post_id):
