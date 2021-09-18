@@ -31,15 +31,21 @@ The dependencies for this project are:
 - Cloudinary
 - Venv
 
-After cloning this repository - use the command:
+After cloning this repository - use the command -
+
 Create a local virtual environment using: 
 
 `python -m venv venv`
 
+Run the environment:
+
 `source venv/bin/activate`
+
+Install the dependencies for the site:
 
 `pip install -r requirements.txt`
 
+For the database installation - please create a database name projectheroku and use code found in the schema.sql file with your preferred database system.
 
 ## Templates
 

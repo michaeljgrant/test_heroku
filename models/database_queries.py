@@ -14,6 +14,10 @@ def new_post(user_id, post_content, post_title, username, uploading_image):
     sql_write("INSERT INTO posts (poster_id, post_content, post_title, username, imageurl) VALUES (%s, %s, %s, %s, %s)", [user_id, post_content, post_title, username, uploading_image])
     return
 
+def new_post_without_image(user_id, post_content, post_title, username):
+    sql_write("INSERT INTO posts (poster_id, post_content, post_title, username) VALUES (%s, %s, %s, %s)", [user_id, post_content, post_title, username])
+    return
+
 def get_posts():
     results = sql_select("SELECT * FROM posts ORDER BY id DESC", [])
     return results
