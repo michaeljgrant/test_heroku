@@ -15,12 +15,31 @@ Your app must:
 
 Create a messageboard where people can post about bread; such as bakeries, recipes and tips and tricks for creating the perfect bread.
 
-This idea is a parody of reddit called breaddit - and will have common messageboard functionality - post, delete, like, dislike and comment.
+This idea is a parody of reddit called breaddit - and will have common messageboard functionality - post, delete, like, dislike and comment and photos.
 
 The website will require users to create an account and login to access the functionality. 
 
 ## Website Link
 [GA Project App](https://ga-first-heroku-project.herokuapp.com/)
+
+## Utilizing this repo locally
+
+The dependencies for this project are: 
+- Flask
+- BCrypt
+- PsycopG2
+- Cloudinary
+- Venv
+
+After cloning this repository - use the command:
+Create a local virtual environment using: 
+
+`python -m venv venv`
+
+`source venv/bin/activate`
+
+`pip install -r requirements.txt`
+
 
 ## Templates
 

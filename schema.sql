@@ -12,6 +12,7 @@ CREATE TABLE posts (
     poster_id INTEGER,
     post_content TEXT,
     post_title,
+    imageurl,
     FOREIGN KEY(poster_id)
     REFERENCES users(id)
 );
@@ -23,7 +24,8 @@ CREATE TABLE comments (
     comment_content TEXT,
     FOREIGN KEY (post_id)
     REFERENCES posts(id)
-)
+);
+
 
 CREATE TABLE likes (
     post_id INTEGER,
@@ -32,5 +34,4 @@ CREATE TABLE likes (
     FOREIGN KEY(user_id)
     REFERENCES users(id)
 );
-
 
