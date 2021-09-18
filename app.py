@@ -1,4 +1,4 @@
-from models.database_queries import create_user, get_posts, new_post, update_post, post_editor, delete_post, getusername, update_post_with_new_image
+from models.database_queries import create_user, get_posts, new_post, update_post, post_editor, delete_post, getusername, update_post_with_new_image, new_post_without_image
 from models.verify_user import user_id, validate_password
 from flask import Flask, request, render_template, redirect, session
 import psycopg2
@@ -72,9 +72,13 @@ def create_a_post():
     post_content = request.form.get("post_content")
     post_title = request.form.get("post_title")
     post_image = request.files['post_image']
-    response = cloudinary.uploader.upload(post_image)
-    uploading_img = response['url']
-    new_post(user_id, post_content, post_title, username, uploading_img)
+    print(f"THIS IS THE POST IMAGE: {post_image}")
+    if post_image:
+        response = cloudinary.uploader.upload(post_image)
+        uploading_img = response['url']
+        new_post(user_id, post_content, post_title, username, uploading_img)
+    else:
+        new_post_without_image(user_id, post_content, post_title, username)
     return redirect("/")
 
 @app.route("/edit_post", methods=["GET"])
