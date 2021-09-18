@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% block login %}
 <nav class="login_box">
-{% if user_id %}
-<p>You are logged in as: {{user_name}}
-<a class="headerbutton" href="/logout">Logout</a>
-<a class="headerbutton" href="/addpost">New Post</a></p>
-{% else %}
-<a class="button" href="/login">Login</a><span><a class="button" href="/signup">Sign Up</a></span>
-{% endif %}
+    {% if user_id %}
+    <p>You are logged in as: {{user_name}}
+    <a class="headerbutton" href="/logout">Logout</a>
+    <a class="headerbutton" href="/addpost">New Post</a></p>
+    {% else %}
+    <a class="button" href="/login">Login</a><span><a class="button" href="/signup">Sign Up</a></span>
+    {% endif %}
 </nav>
 {% endblock %}
 {% block content %}
@@ -15,17 +15,19 @@
 <ul>
 {% for posts in results %}
 
-<li>
-    <h3>{{posts[3]}}</h3><br>
-    {% if posts[5] == "None" %}
-    {% elif posts[5] != None%}
-    <img class="post-image" src="{{posts[5]}}">
-    {% endif %}
-    <p>{{posts[2]}}</p><br>
+    <li>
+        <h3>{{posts[3]}}</h3><br>
+        {% if posts[5] == "None" %}
+        {% elif posts[5] != None %}
+        <img class="post-image" src="{{posts[5]}}">
+        {% endif %}
+        <p>{{posts[2]}}</p><br>
     
-    {% if user_id == posts[1] %}<a class="edit_link" href="/edit_post?id={{posts[0]}}"> Edit </a><br>{% endif %}
-    <p class="username">Created by: {{posts[4]}}</p>
-</li>
+        {% if user_id == posts[1] %}
+        <a class="edit_link" href="/edit_post?id={{posts[0]}}"> Edit </a><br>
+        {% endif %}
+        <p class="username">Created by: {{posts[4]}}</p>
+    </li>
 {% endfor %}
 </ul>
 {% endblock %}
