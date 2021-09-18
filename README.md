@@ -21,7 +21,7 @@ The website will require users to create an account and login to access the func
 
 ## Special Thanks
 
-This project would not be possible without the consultancy and feedback from fellow students [Alwin - Keypuncher](https://github.com/keypuncheralwin) and [Hayden](), my partner [Meggan](https://github.com/megganeturner) and the users of our [Twitch](twitch.tv) discord community Chaos Kingdom.
+This project would not be possible without the consultancy and feedback from fellow students [Alwin - Keypuncher](https://github.com/keypuncheralwin) and [Hayden](https://github.com/hjofford/), my partner [Meggan](https://github.com/megganeturner) and the users of our [Twitch](twitch.tv) discord community Chaos Kingdom.
 - [Mego](https://www.twitch.tv/megomegomego)
 - [ConnivingPrincess](https://www.twitch.tv/theconnivingprincess)
 - [JohnnyOnTheSpot](https://www.twitch.tv/johnnyonthespot5)
