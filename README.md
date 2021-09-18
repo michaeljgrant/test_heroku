@@ -25,6 +25,7 @@ This project would not be possible without the consultancy and feedback from fel
 - [Mego](https://www.twitch.tv/megomegomego)
 - [ConnivingPrincess](https://www.twitch.tv/theconnivingprincess)
 - [JohnnyOnTheSpot](https://www.twitch.tv/johnnyonthespot5)
+- [xivMoonstone](https://www.twitch.tv/xivmoonstone)
 
 ## Website Link
 [GA Project App](https://ga-first-heroku-project.herokuapp.com/)
